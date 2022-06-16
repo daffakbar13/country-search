@@ -3,6 +3,14 @@
   margin: 15% 20%;
 }
 
+.Result {
+  margin: 3% 3%;
+}
+
+.CountryName {
+  font-size: 48px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
