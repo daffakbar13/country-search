@@ -8,11 +8,17 @@ import {
 import './App.css';
 import CountrySearch from './CountrySearch';
 import CountryResult from './CountryResult';
+import NotFound from './NotFound';
 
 export default function App() {
   return (
     <Router>
       <Routes>
+
+        {/* Not Found Page */}
+        <Route path={'*'} element={
+          <NotFound />
+        } />
 
         {/* Home Page */}
         <Route path='/' element={

@@ -57,8 +57,8 @@ function CountrySearch() {
                                     borderRadius: 0,
                                     colors: {
                                         ...theme.colors,
-                                        primary25: 'lightgrey',
-                                        primary: 'purple',
+                                        primary25: '#F4F4F4',
+                                        primary: '#8362F280',
                                     }
                                 })}
                             />

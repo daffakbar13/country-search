@@ -39,9 +39,11 @@ function CountryResult() {
                     {
                         content.map(function (e) {
                             return (
-                                <h1 key={e.name}>
-                                    {e.name}
-                                </h1>
+                                <div key={e.name}>
+                                    <h1>
+                                        {e.name}
+                                    </h1>
+                                </div>
                             )
                         })
                     }
