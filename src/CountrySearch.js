@@ -18,12 +18,23 @@ function CountrySearch() {
     // }
 
     const [country, setCountry] = useState("")
+    // const [content, setContent] = useState("")
 
     // const handleSubmit = async (e) => {
     //     // store the states in the form data
     //     this.state.selectedCountry = e.value;
 
     //     window.location.href = `https://localhost:3000/result/${this.state.selectedCountry}`;
+    // }
+
+    // const tes = async () => {
+    //     if (typeof fetch == 'undefined') return
+    //     const response = await fetch('https://restcountries.com/v2/name/indonesia')
+    //     const content = await response.json()
+
+    //     console.dir({ content })
+
+    //     setContent({ content: JSON.stringify(content) })
     // }
 
     const onChange = event => {
@@ -40,14 +51,13 @@ function CountrySearch() {
         const json = await response.json()
 
         callback(json.map(i => ({ label: i.name, value: i.name })))
+
     }
 
     const navigate = useNavigate()
 
     function submithandler(event) {
         event.preventDefault()
-
-        console.log(country.value);
 
         navigate(`/result/${country.value}`)
     }
