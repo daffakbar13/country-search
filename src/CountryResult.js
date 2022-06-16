@@ -4,7 +4,9 @@ import { useParams } from 'react-router-dom'
 function CountryResult() {
 
     const urlParams = useParams()
+
     const [content, setContent] = useState({})
+
     const [loading, setLoading] = useState(true)
 
     useEffect(function () {
@@ -20,8 +22,9 @@ function CountryResult() {
     )
 
     return (
+
         <div>
-            {/* Loading element */}
+            {/* Loading content */}
             {loading && (
                 <div>
                     <h1>
@@ -29,6 +32,8 @@ function CountryResult() {
                     </h1>
                 </div>
             )}
+
+            {/* Content */}
             {!loading && (
                 <div>
                     {
@@ -43,6 +48,7 @@ function CountryResult() {
                 </div>
             )}
         </div>
+
     )
 }
 

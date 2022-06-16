@@ -13,45 +13,18 @@ import { useState } from 'react'
 const animatedComponent = makeAnimated()
 
 function CountrySearch() {
-    // const state = {
-    //     selectedCountry: ""
-    // }
 
     const [country, setCountry] = useState("")
-    // const [content, setContent] = useState("")
-
-    // const handleSubmit = async (e) => {
-    //     // store the states in the form data
-    //     this.state.selectedCountry = e.value;
-
-    //     window.location.href = `https://localhost:3000/result/${this.state.selectedCountry}`;
-    // }
-
-    // const tes = async () => {
-    //     if (typeof fetch == 'undefined') return
-    //     const response = await fetch('https://restcountries.com/v2/name/indonesia')
-    //     const content = await response.json()
-
-    //     console.dir({ content })
-
-    //     setContent({ content: JSON.stringify(content) })
-    // }
 
     const onChange = event => {
         setCountry(event)
     }
-    // const onChange = event => {
-    //     setCountry({
-    //         country: event || []
-    //     })
-    // }
 
     const loadOptions = async (inputText, callback) => {
         const response = await fetch(`https://restcountries.com/v2/name/${inputText}`)
         const json = await response.json()
 
         callback(json.map(i => ({ label: i.name, value: i.name })))
-
     }
 
     const navigate = useNavigate()
@@ -61,6 +34,7 @@ function CountrySearch() {
 
         navigate(`/result/${country.value}`)
     }
+
     return (
 
         < Container >
@@ -91,6 +65,7 @@ function CountrySearch() {
                 </Col>
             </Row>
         </Container >
+
     )
 }
 
