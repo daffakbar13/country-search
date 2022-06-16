@@ -1,6 +1,19 @@
 .App {
   text-align: center;
-  margin: 15% 20%;
+  margin: 13% auto;
+}
+
+.NotFound {
+  color: #8362F2;
+  font-size: 90px;
+}
+
+.HomeTitle {
+  font-size: 72px;
+}
+
+.CountrySelect {
+  margin: auto 20%;
 }
 
 .Result {
@@ -9,6 +22,18 @@
 
 .CountryName {
   font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.Loading {
+  text-align: center;
+  vertical-align: middle;
+  margin: 20% auto;
+}
+
+.LatLong {
+  font-size: 18px;
+  margin: 0;
 }
 
 .App-logo {

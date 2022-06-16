@@ -41,28 +41,32 @@ function CountrySearch() {
             < Container >
                 <Row>
                     <Col>
-                        <h1>
+                        <h1 className='HomeTitle'>
                             Country
                         </h1>
-                        <form onSubmit={submithandler}>
-                            <AsyncSelect
-                                name='country'
-                                components={animatedComponent}
-                                value={country}
-                                onChange={onChange}
-                                placeholder={'Type any country name'}
-                                loadOptions={loadOptions}
-                                theme={theme => ({
-                                    ...theme,
-                                    borderRadius: 0,
-                                    colors: {
-                                        ...theme.colors,
-                                        primary25: '#F4F4F4',
-                                        primary: '#8362F280',
-                                    }
-                                })}
-                            />
-                        </form>
+                        <div className='CountrySelect'>
+
+                            <form onSubmit={submithandler}>
+                                <AsyncSelect
+                                    name='country'
+                                    components={animatedComponent}
+                                    value={country}
+                                    onChange={onChange}
+                                    placeholder={'Type any country name'}
+                                    loadOptions={loadOptions}
+                                    theme={theme => ({
+                                        ...theme,
+                                        borderRadius: 10,
+                                        width: 200,
+                                        colors: {
+                                            ...theme.colors,
+                                            primary25: '#F4F4F4',
+                                            primary: '#8362F280',
+                                        }
+                                    })}
+                                />
+                            </form>
+                        </div>
                     </Col>
                 </Row>
             </Container >
