@@ -37,34 +37,36 @@ function CountrySearch() {
 
     return (
 
-        < Container >
-            <Row>
-                <Col>
-                    <h1>
-                        Country
-                    </h1>
-                    <form onSubmit={submithandler}>
-                        <AsyncSelect
-                            name='country'
-                            components={animatedComponent}
-                            value={country}
-                            onChange={onChange}
-                            placeholder={'Type any country name'}
-                            loadOptions={loadOptions}
-                            theme={theme => ({
-                                ...theme,
-                                borderRadius: 0,
-                                colors: {
-                                    ...theme.colors,
-                                    primary25: 'lightgrey',
-                                    primary: 'purple',
-                                }
-                            })}
-                        />
-                    </form>
-                </Col>
-            </Row>
-        </Container >
+        <div className='App'>
+            < Container >
+                <Row>
+                    <Col>
+                        <h1>
+                            Country
+                        </h1>
+                        <form onSubmit={submithandler}>
+                            <AsyncSelect
+                                name='country'
+                                components={animatedComponent}
+                                value={country}
+                                onChange={onChange}
+                                placeholder={'Type any country name'}
+                                loadOptions={loadOptions}
+                                theme={theme => ({
+                                    ...theme,
+                                    borderRadius: 0,
+                                    colors: {
+                                        ...theme.colors,
+                                        primary25: 'lightgrey',
+                                        primary: 'purple',
+                                    }
+                                })}
+                            />
+                        </form>
+                    </Col>
+                </Row>
+            </Container >
+        </div>
 
     )
 }

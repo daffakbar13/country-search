@@ -9,39 +9,23 @@ import './App.css';
 import CountrySearch from './CountrySearch';
 import CountryResult from './CountryResult';
 
-export default function App(inputText) {
+export default function App() {
   return (
     <Router>
       <Routes>
 
         {/* Home Page */}
         <Route path='/' element={
-          <Home />
+          <CountrySearch />
         } />
 
         {/* Result Page */}
         <Route path={'/result/:slug'} element={
-          <Result />
+          <CountryResult />
         } />
 
       </Routes>
     </Router>
 
   );
-}
-
-function Home() {
-  return (
-    <div className="App">
-      <CountrySearch />
-    </div>
-  )
-}
-
-function Result() {
-  return (
-    <div className="App">
-      <CountryResult />
-    </div>
-  )
 }

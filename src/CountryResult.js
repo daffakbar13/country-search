@@ -23,7 +23,7 @@ function CountryResult() {
 
     return (
 
-        <div>
+        <div className='App'>
             {/* Loading content */}
             {loading && (
                 <div>
