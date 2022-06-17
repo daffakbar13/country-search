@@ -33,6 +33,8 @@ function CountryResult() {
 
     const [contents, setContents] = useState({})
 
+    const [callings, setCallings] = useState()
+
     const [loading, setLoading] = useState(true)
 
     useEffect(function () {
@@ -46,6 +48,21 @@ function CountryResult() {
         getContent()
     }, [urlParams]
     )
+
+    useEffect(function () {
+        async function getCalling() {
+            const request = await fetch(`https://restcountries.com/v2/callingcode/${contents.map(function (e) {
+                return e.callingCodes
+            })}`)
+            const response = await request.json()
+
+            let hasil = response.map(e => e.name)
+
+            setCallings(hasil.length)
+            setLoading(false)
+        }
+        getCalling()
+    })
 
     return (
 
@@ -111,13 +128,13 @@ function CountryResult() {
                                                     <CardContent>
                                                         <Typography variant="body2" color="text.secondary">
                                                             <h1 className='Capital'>
-                                                                Capital : <span>{content.capital}</span>
+                                                                Capital: <span>{content.capital}</span>
                                                             </h1>
                                                             <h1 className='Capital'>
-                                                                Region : <span>{content.region}</span>
+                                                                Region: <span>{content.region}</span>
                                                             </h1>
                                                             <h1 className='Capital'>
-                                                                Subregion : <span>{content.subregion}</span>
+                                                                Subregion: <span>{content.subregion}</span>
                                                             </h1>
                                                         </Typography>
                                                     </CardContent>
@@ -125,7 +142,11 @@ function CountryResult() {
                                             </Card>
                                         </div>
                                     </div>
-
+                                    <div className='CallingCode'>
+                                        <h1 className='CallingCodeTittle'>Calling Code</h1>
+                                        <h1 className='CallingCodeContent'>{content.callingCodes}</h1>
+                                        <h1 className='CallingCodeCountries'><span>{callings} counntries</span> with this calling code</h1>
+                                    </div>
                                 </div>
                             )
                         })
