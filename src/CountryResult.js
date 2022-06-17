@@ -38,7 +38,7 @@ function CountryResult() {
 
     useEffect(function () {
         async function getContent() {
-            const request = await fetch(`https://restcountries.com/v2/name/${urlParams.slug}`)
+            const request = await fetch(`https://restcountries.com/v2/name/${urlParams.slug}?fullText=true`)
             const response = await request.json()
 
             setContents(response)
@@ -63,17 +63,16 @@ function CountryResult() {
             {/* Content */}
             {!loading && (
                 <div className='Result'>
+                    <a href='/'>
+                        <Button>
+                            Back to Homepage
+                        </Button>
+                    </a>
                     {
                         contents.map(function (content) {
                             return (
                                 <div key={content.name}>
-                                    <a href='/'>
-                                        <Button>
-                                            Back to Homepage
-                                        </Button>
-                                    </a>
                                     <h1 className='CountryName'>
-                                        {/* {content.currencies.map(e => (e.code))} */}
                                         {content.name}
                                     </h1>
                                     <div>
@@ -83,22 +82,49 @@ function CountryResult() {
                                             </Spell>
                                         )}
                                     </div>
-                                    <div>
-                                        <Card sx={{ maxWidth: 345 }}>
-                                            <CardActionArea>
-                                                <CardContent>
-                                                    <Typography gutterBottom variant="b" component="div">
-                                                        <h1 className='LatLong'>
-                                                            {/* LatLong */}
-                                                        </h1>
-                                                    </Typography>
-                                                    <Typography variant="body2" color="text.secondary">
-                                                        {/* Lizards are a widespread group of squamate reptiles, with over 6,000
-                                                        species, ranging across all continents except Antarctica */}
-                                                    </Typography>
-                                                </CardContent>
-                                            </CardActionArea>
-                                        </Card>
+                                    <div className='ResultCard'>
+                                        <div className='LatLongCard'>
+                                            <Card sx={{ width: 540 }}>
+                                                <CardActionArea>
+                                                    <CardContent>
+                                                        <Typography gutterBottom variant="b" component="div">
+                                                            <h1 className='LatLong'>
+                                                                LatLong
+                                                            </h1>
+                                                        </Typography>
+                                                        <Typography variant="body2" color="text.secondary">
+                                                            {content.latlng.map(e =>
+                                                                <h1 className='LatLong2'>
+                                                                    {e.toFixed(1)}
+                                                                </h1>
+                                                            )}
+                                                        </Typography>
+                                                    </CardContent>
+                                                </CardActionArea>
+                                            </Card>
+                                        </div>
+                                        <div>
+                                            <Card sx={{
+                                                width: 540,
+                                                height: 126
+                                            }}>
+                                                <CardActionArea>
+                                                    <CardContent>
+                                                        <Typography variant="body2" color="text.secondary">
+                                                            <h1 className='Capital'>
+                                                                Capital : <span>{content.capital}</span>
+                                                            </h1>
+                                                            <h1 className='Capital'>
+                                                                Region : <span>{content.region}</span>
+                                                            </h1>
+                                                            <h1 className='Capital'>
+                                                                Subregion : <span>{content.subregion}</span>
+                                                            </h1>
+                                                        </Typography>
+                                                    </CardContent>
+                                                </CardActionArea>
+                                            </Card>
+                                        </div>
                                     </div>
 
                                 </div>

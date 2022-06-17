@@ -36,6 +36,34 @@
   margin: 0;
 }
 
+.LatLong2 {
+  font-size: 48px;
+  margin: 0;
+  color: #8362F2;
+  display: inline;
+  margin-right: 20px;
+}
+
+.ResultCard {
+  display: flex;
+}
+
+.LatLongCard {
+  margin-right: 25px;
+  padding: auto;
+}
+
+.Capital {
+  font-size: 18px;
+  margin: 0;
+  font-weight: lighter;
+  color: black;
+}
+
+.Capital span {
+  font-weight: bold;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
