@@ -35,6 +35,8 @@ function CountryResult() {
 
     const [callings, setCallings] = useState()
 
+    const [currency, setCurrency] = useState()
+
     const [loading, setLoading] = useState(true)
 
     useEffect(function () {
@@ -64,6 +66,21 @@ function CountryResult() {
         getCalling()
     })
 
+    useEffect(function () {
+        async function getCurrency() {
+            const request = await fetch(`https://restcountries.com/v2/currency/${contents.map(function (e) {
+                return e.currencies.map(e => e.code)
+            })}`)
+            const response = await request.json()
+
+            let hasil = response.map(e => e.name)
+
+            setCurrency(hasil.length)
+            setLoading(false)
+        }
+        getCurrency()
+    })
+
     return (
 
         <div>
@@ -88,9 +105,12 @@ function CountryResult() {
                         contents.map(function (content) {
                             return (
                                 <div key={content.name}>
-                                    <h1 className='CountryName'>
-                                        {content.name}
-                                    </h1>
+                                    <div className='Tittle'>
+                                        <h1 className='CountryName'>
+                                            {content.name}
+                                        </h1>
+                                        <img className='Flag' src={`${content.flag}`}></img>
+                                    </div>
                                     <div>
                                         {content.altSpellings.map(e =>
                                             <Spell>
@@ -142,18 +162,26 @@ function CountryResult() {
                                             </Card>
                                         </div>
                                     </div>
-                                    <div className='CallingCode'>
-                                        <h1 className='CallingCodeTittle'>Calling Code</h1>
-                                        <h1 className='CallingCodeContent'>{content.callingCodes}</h1>
-                                        <h1 className='CallingCodeCountries'><span>{callings} counntries</span> with this calling code</h1>
+                                    <div className='More'>
+                                        <div className='CallingCode'>
+                                            <h1 className='CallingCodeTittle'>Calling Code</h1>
+                                            <h1 className='CallingCodeContent'>{content.callingCodes}</h1>
+                                            <h1 className='CallingCodeCountries'><span>{callings} countries</span> with this calling code</h1>
+                                        </div>
+                                        <div className='CallingCode'>
+                                            <h1 className='CallingCodeTittle'>Currency</h1>
+                                            <h1 className='CallingCodeContent'>{content.currencies.map(e => e.code)}</h1>
+                                            <h1 className='CallingCodeCountries'><span>{currency} countries</span> with this currency</h1>
+                                        </div>
                                     </div>
                                 </div>
                             )
                         })
                     }
                 </div>
-            )}
-        </div>
+            )
+            }
+        </div >
 
     )
 }

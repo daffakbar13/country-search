@@ -20,9 +20,22 @@
   margin: 3% 3%;
 }
 
+.Tittle {
+  display: flex;
+  margin-top: 20px;
+}
+
+.Flag {
+  margin: 25px 0 0 20px;
+  width: auto;
+  height: 30px;
+  border: 1px solid black
+}
+
 .CountryName {
   font-size: 48px;
   margin-bottom: 10px;
+  margin-top: 0;
 }
 
 .Loading {
@@ -66,7 +79,8 @@
 }
 
 .CallingCode {
-  margin: 40px 30px 0 0;
+  margin: 40px 40px 0 0;
+  width: 540px !important;
 }
 
 .CallingCodeTittle {
@@ -91,6 +105,10 @@
   color: #8362F2;
   text-decoration: underline;
   cursor: pointer;
+}
+
+.More {
+  display: flex;
 }
 
 .App-logo {
