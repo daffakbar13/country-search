@@ -5,6 +5,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import Tooltip from '@mui/material/Tooltip';
 
 const Button = styled.button`
   background-color: #8362F2;
@@ -33,9 +34,9 @@ function CountryResult() {
 
     const [contents, setContents] = useState({})
 
-    const [callings, setCallings] = useState()
+    const [callings, setCallings] = useState([])
 
-    const [currency, setCurrency] = useState()
+    const [currency, setCurrency] = useState([])
 
     const [loading, setLoading] = useState(true)
 
@@ -53,14 +54,12 @@ function CountryResult() {
 
     useEffect(function () {
         async function getCalling() {
-            const request = await fetch(`https://restcountries.com/v2/callingcode/${contents.map(function (e) {
-                return e.callingCodes
-            })}`)
+            const request = await fetch(`https://restcountries.com/v2/callingcode/${contents.map(function (e) { return e.callingCodes })}`)
             const response = await request.json()
 
             let hasil = response.map(e => e.name)
 
-            setCallings(hasil.length)
+            setCallings(hasil)
             setLoading(false)
         }
         getCalling()
@@ -75,11 +74,28 @@ function CountryResult() {
 
             let hasil = response.map(e => e.name)
 
-            setCurrency(hasil.length)
+            setCurrency(hasil)
             setLoading(false)
         }
         getCurrency()
     })
+
+    const positionRef = React.useRef({
+        x: 0,
+        y: 0,
+    });
+
+    const popperRef = React.useRef(null);
+
+    const areaRef = React.useRef(null);
+
+    const handleMouseMove = (event) => {
+        positionRef.current = { x: event.clientX, y: event.clientY };
+
+        if (popperRef.current != null) {
+            popperRef.current.update();
+        }
+    };
 
     return (
 
@@ -109,7 +125,7 @@ function CountryResult() {
                                         <h1 className='CountryName'>
                                             {content.name}
                                         </h1>
-                                        <img className='Flag' src={`${content.flag}`}></img>
+                                        <img className='Flag' src={`${content.flag} `}></img>
                                     </div>
                                     <div>
                                         {content.altSpellings.map(e =>
@@ -166,12 +182,52 @@ function CountryResult() {
                                         <div className='CallingCode'>
                                             <h1 className='CallingCodeTittle'>Calling Code</h1>
                                             <h1 className='CallingCodeContent'>{content.callingCodes}</h1>
-                                            <h1 className='CallingCodeCountries'><span>{callings} countries</span> with this calling code</h1>
+                                            <Tooltip
+                                                title={`${callings} `}
+                                                placement="top"
+                                                arrow
+                                                PopperProps={{
+                                                    popperRef,
+                                                    anchorEl: {
+                                                        getBoundingClientRect: () => {
+                                                            return new DOMRect(
+                                                                positionRef.current.x,
+                                                                areaRef.current.getBoundingClientRect().y,
+                                                                0,
+                                                                0,
+                                                            );
+                                                        },
+                                                    },
+                                                }}
+                                            >
+                                                <h1 className='CallingCodeCountries'><span ref={areaRef}
+                                                    onMouseMove={handleMouseMove}>{callings.length} countries</span> with this calling code</h1>
+                                            </Tooltip>
                                         </div>
                                         <div className='CallingCode'>
                                             <h1 className='CallingCodeTittle'>Currency</h1>
                                             <h1 className='CallingCodeContent'>{content.currencies.map(e => e.code)}</h1>
-                                            <h1 className='CallingCodeCountries'><span>{currency} countries</span> with this currency</h1>
+                                            <Tooltip
+                                                title={`${currency} `}
+                                                placement="top"
+                                                arrow
+                                                PopperProps={{
+                                                    popperRef,
+                                                    anchorEl: {
+                                                        getBoundingClientRect: () => {
+                                                            return new DOMRect(
+                                                                positionRef.current.x,
+                                                                areaRef.current.getBoundingClientRect().y,
+                                                                0,
+                                                                0,
+                                                            );
+                                                        },
+                                                    },
+                                                }}
+                                            >
+                                                <h1 className='CallingCodeCountries'><span ref={areaRef}
+                                                    onMouseMove={handleMouseMove}>{currency.length} countries</span> with this currency</h1>
+                                            </Tooltip>
                                         </div>
                                     </div>
                                 </div>
