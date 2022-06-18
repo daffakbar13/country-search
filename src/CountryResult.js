@@ -125,7 +125,7 @@ function CountryResult() {
                                         <h1 className='CountryName'>
                                             {content.name}
                                         </h1>
-                                        <img className='Flag' src={`${content.flag} `}></img>
+                                        <img className='Flag' src={`${content.flag} `} alt="Flag"></img>
                                     </div>
                                     <div>
                                         {content.altSpellings.map(e =>
